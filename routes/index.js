@@ -31,6 +31,8 @@ router.get("/request-proofs", async(req, res) => {
      // display this reclaimUrl as a QR code on laptop or as a link on mobile devices for users to initiate creating proofs
 });
 
+router.use(express.text({ type: "*/*" }));
+ 
 router.post("/callback", async (req, res) => {
   try {
     // Retrieve the callback ID from the URL parameters
