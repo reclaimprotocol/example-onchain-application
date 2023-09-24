@@ -31,15 +31,18 @@ router.get("/request-proofs", async(req, res) => {
      // display this reclaimUrl as a QR code on laptop or as a link on mobile devices for users to initiate creating proofs
 });
 
-router.use(express.text({ type: "*/*" }));
+//router.use(express.text({ type: "*/*" }));
  
 router.post("/callback", async (req, res) => {
+  console.log(req.body);
+  const body = Object.keys(req.body)[0];
+  console.log(body);
   try {
     // Retrieve the callback ID from the URL parameters
     const callbackId = req.query.callbackId;
  
     // Retrieve the proofs from the request body
-    const proofs = reclaimprotocol.utils.getProofsFromRequestBody(req.body)
+    const proofs = reclaimprotocol.utils.getProofsFromRequestBody(body)
  
     // Verify the correctness of the proofs (optional but recommended)
     const isProofsCorrect = await reclaim.verifyCorrectnessOfProofs(callbackId, proofs);
