@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Company Uniswap Pools
+  p Provide liquidity and swap on pools by and for your colleagues
+  form(action="/request-proofs", method="GET")
+    input(name="address")
+    input(type="submit")
